@@ -88,13 +88,13 @@ public class Drive {
                 Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
                 for (int x = 0; x < 20000; x++) {
                     new File(path + filePrefix + getRandomString()).createNewFile();
-                    if(x % 100 == 0) {
+                    if (x % 100 == 0) {
                         publishProgress(x / 200);
                     }
                 }
                 deleteTempFiles();
                 Log.d(MainActivity.logPrefix, "FILLED FILE TABLE");
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return "Failed @ Erase File Table";
             }
@@ -169,7 +169,7 @@ public class Drive {
         try {
             for (File f : path.listFiles()) {
                 if (f.isFile()) {
-                    if ((f + "").contains("Extirpater_Temp-")) {
+                    if ((f + "").contains(filePrefix)) {
                         f.delete();
                     }
                 }
