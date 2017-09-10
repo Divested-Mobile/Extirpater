@@ -15,5 +15,6 @@
     <string name="lblRandom">Random</string>
     <string name="lblSecureRandom">SecureRandom</string>
     <string name="lblData">Output Data</string>
+    <string name="lblIdle">Idle</string>
 
 </resources>

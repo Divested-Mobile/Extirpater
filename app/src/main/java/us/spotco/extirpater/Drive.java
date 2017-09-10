@@ -48,7 +48,7 @@ public class Drive {
 
         this.txtInfo.setText(((spaceTotal - spaceFree) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
         btnControl.setOnClickListener(actionListener);
-        this.txtStatus.setText("Idle");
+        this.txtStatus.setText(R.string.lblIdle);
         Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
         zeroes = generateByteArray(0xFF, megabyte * 25);
@@ -73,7 +73,7 @@ public class Drive {
         protected void onPreExecute() {
             Log.d("Extirpater", "STARTING");
             btnControl.setText(R.string.lblStop);
-            txtStatus.setText("Erasing");
+            txtStatus.setText(R.string.lblErasing);
             prg.setProgress(0);
             prg.setVisibility(View.VISIBLE);
             running = true;
@@ -97,6 +97,8 @@ public class Drive {
             }
             Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
+            final int dataOutput = MainActivity.dataOutput;
+
             long fsCache = path.getFreeSpace();
             while (fsCache >= megabyte25) {
                 if (!running) {
@@ -104,7 +106,7 @@ public class Drive {
                     break;
                 }
                 try {
-                    fos.write(getDataArray());
+                    fos.write(getDataArray(dataOutput));
                 } catch (IOException e) {
                     break;
                 }
@@ -167,9 +169,9 @@ public class Drive {
         return temp.toString();
     }
 
-    private byte[] getDataArray() {
+    private byte[] getDataArray(int dataOutput) {
         //Log.d("Extirpater", "Generating array using " + MainActivity.dataOutput);
-        switch (MainActivity.dataOutput) {
+        switch (dataOutput) {
             case 0:
                 return zeroes;
             case 1:
