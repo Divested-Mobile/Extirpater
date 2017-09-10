@@ -95,8 +95,8 @@ public class Drive {
             }
             Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
-            long fsCache;
-            while ((fsCache = path.getFreeSpace()) >= megabyte25) {
+            long fsCache = path.getFreeSpace();
+            while (fsCache >= megabyte25) {
                 if (!running) {
                     Log.d("Extirpater", "STOPPING");
                     break;
@@ -107,7 +107,7 @@ public class Drive {
                 } catch (IOException e) {
                     break;
                 }
-                publishProgress((int) (100.0 - ((((double) (fsCache)) / spaceFree) * 100.0)));
+                publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFree) * 100.0)));
                 //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
             }
 
