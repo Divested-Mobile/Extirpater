@@ -1,5 +1,6 @@
 package us.spotco.extirpater;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -25,10 +27,9 @@ public class Drive {
     private static final int megabyte = 1000000;
     private static byte[] zeroes;
 
-    private Thread eraser;
+    private AsyncTask eraser;
     private boolean running;
     private File tempFile;
-    private double progress;
     private SecureRandom secureRandom = new SecureRandom();
 
     public Drive(File path, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
@@ -43,7 +44,6 @@ public class Drive {
         spaceTotal = path.getTotalSpace();
 
         this.txtInfo.setText(((spaceTotal - spaceFree) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
-        prg.setProgress(0);
         btnControl.setOnClickListener(actionListener);
         this.txtStatus.setText("Idle");
         Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
@@ -56,59 +56,89 @@ public class Drive {
         @Override
         public void onClick(View view) {
             if (running) {
-                Log.d("Extirpater", "STOPPING");
-                btnControl.setText(R.string.lblStart);
                 running = false;
-                txtStatus.setText("Stopped");
             } else {
-                Log.d("Extirpater", "STARTING");
-                eraser = getEraser();
-                eraser.start();
-                txtStatus.setText("Erasing");
-                btnControl.setText(R.string.lblStop);
+                eraser = new Eraser().execute("");
             }
         }
     };
 
-    private Thread getEraser() {
-        return new Thread(() -> {
+
+    private class Eraser extends AsyncTask<String, Integer, String> {
+
+        @Override
+        protected void onPreExecute() {
+            Log.d("Extirpater", "STARTING");
+            btnControl.setText(R.string.lblStop);
+            txtStatus.setText("Erasing");
+            prg.setProgress(0);
+            prg.setVisibility(View.VISIBLE);
+            running = true;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            tempFile = new File(path + "/Extirpater_Temp-" + getRandomString());
             try {
-                running = true;
-
-                tempFile = new File(path + "/Extirpater_Temp-" + getRandomString());
                 tempFile.createNewFile();
-                FileOutputStream fos = new FileOutputStream(tempFile);
-                Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Failed";
+            }
+            FileOutputStream fos;
+            try {
+                fos = new FileOutputStream(tempFile);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "Failed";
+            }
+            Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
 
-                while (path.getFreeSpace() / megabyte >= 25) {
-                    if (!running) {
-                        break;
-                    }
-                    try {
-                        //fos.write(getRandomByteArray(megabyte * 25));
-                        fos.write(zeroes);
-                    } catch (IOException e) {
-                        break;
-                    }
-                    progress = 100.0 - ((((double) (path.getFreeSpace())) / spaceFree) * 100.0);
-                    prg.setProgress((int) progress);
-                    //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
+            while (path.getFreeSpace() / megabyte >= 25) {
+                if (!running) {
+                    Log.d("Extirpater", "STOPPING");
+                    break;
                 }
+                try {
+                    //fos.write(getRandomByteArray(megabyte * 25));
+                    fos.write(zeroes);
+                } catch (IOException e) {
+                    break;
+                }
+                publishProgress((int) (100.0 - ((((double) (path.getFreeSpace())) / spaceFree) * 100.0)));
+                //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
+            }
 
+            try {
                 fos.flush();
                 fos.close();
-
-                tempFile.delete();
-                deleteTempFiles();
-                prg.setProgress(0);
-                //if(running) txtStatus.setText("Finished");
-                running = false;
-                Log.d("Extirpater", "ENDED");
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
+                return "Failed";
             }
-        });
+            if(running) {
+                return "Finished";
+            } else {
+                return "Stopped";
+            }
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress) {
+            prg.setProgress(progress[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.d("Extirpater", "ENDED");
+            tempFile.delete();
+            deleteTempFiles();
+            prg.setProgress(0);
+            btnControl.setText(R.string.lblStart);
+            txtStatus.setText(result);
+            running = false;
+        }
     }
 
     private void deleteTempFiles() {
