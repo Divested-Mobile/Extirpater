@@ -6,10 +6,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.uncommons.maths.random.AESCounterRNG;
+import org.uncommons.maths.random.DevRandomSeedGenerator;
+import org.uncommons.maths.random.SeedGenerator;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Random;
 
 public class Drive {
 
@@ -29,7 +34,8 @@ public class Drive {
     private boolean running;
     private File tempFile;
     private double progress;
-    private SecureRandom secureRandom = new SecureRandom();
+    //private SecureRandom secureRandom = new SecureRandom();
+    private AESCounterRNG secureRandom;
 
     public Drive(File path, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
         this.path = path;
@@ -48,7 +54,14 @@ public class Drive {
         this.txtStatus.setText("Idle");
         Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
-        zeroes = generateByteArray(0xFF, megabyte * 25);
+        try {
+            SeedGenerator seedGenerator = new DevRandomSeedGenerator();
+            secureRandom = new AESCounterRNG(seedGenerator.generateSeed(32));
+            Log.d("Extirpater", "Generated seed");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        //zeroes = generateByteArray(0xFF, megabyte * 25);
     }
 
     private View.OnClickListener actionListener = new View.OnClickListener() {
@@ -85,14 +98,14 @@ public class Drive {
                         break;
                     }
                     try {
-                        //fos.write(getRandomByteArray(megabyte * 25));
-                        fos.write(zeroes);
+                        fos.write(getRandomByteArray(megabyte * 25));
+                        //fos.write(zeroes);
                     } catch (IOException e) {
                         break;
                     }
                     progress = 100.0 - ((((double) (path.getFreeSpace())) / spaceFree) * 100.0);
                     prg.setProgress((int) progress);
-                    //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
+                    Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
                 }
 
                 fos.flush();
