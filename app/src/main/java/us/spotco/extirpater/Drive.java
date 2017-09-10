@@ -119,7 +119,7 @@ public class Drive {
                 e.printStackTrace();
                 return "Failed";
             }
-            if(running) {
+            if (running) {
                 return "Finished";
             } else {
                 return "Stopped";
@@ -169,7 +169,7 @@ public class Drive {
 
     private byte[] getDataArray() {
         //Log.d("Extirpater", "Generating array using " + MainActivity.dataOutput);
-        switch(MainActivity.dataOutput) {
+        switch (MainActivity.dataOutput) {
             case 0:
                 return zeroes;
             case 1:
@@ -183,7 +183,7 @@ public class Drive {
 
     private byte[] getRandomByteArray(boolean secure) {
         byte[] bytes = new byte[megabyte25];
-        if(secure) {
+        if (secure) {
             secureRandom.nextBytes(bytes);
         } else {
             random.nextBytes(bytes);
