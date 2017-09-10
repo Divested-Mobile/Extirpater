@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String logPrefix = "Extirpater";
     public static int dataOutput = 1;
 
     @Override
@@ -50,17 +51,17 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mnuDataZeroes:
                 dataOutput = 0;
                 item.setChecked(true);
-                Log.d("Extirpater", "Switched to zeroes");
+                Log.d(logPrefix, "Switched to zeroes");
                 return true;
             case R.id.mnuDataRandom:
                 dataOutput = 1;
                 item.setChecked(true);
-                Log.d("Extirpater", "Switched to Random");
+                Log.d(logPrefix, "Switched to Random");
                 return true;
             case R.id.mnuDataSecureRandom:
                 dataOutput = 2;
                 item.setChecked(true);
-                Log.d("Extirpater", "Switched to SecureRandom");
+                Log.d(logPrefix, "Switched to SecureRandom");
                 return true;
             case R.id.mnuAbout:
                 //TODO: Change this to a dialog

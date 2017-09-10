@@ -51,7 +51,7 @@ public class Drive {
         this.txtInfo.setText(((spaceTotal - spaceFreeOrig) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
         btnControl.setOnClickListener(actionListener);
         this.txtStatus.setText(R.string.lblIdle);
-        Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
+        Log.d(MainActivity.logPrefix, "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
         zeroes = generateByteArray(0xFF, megabyte25);
         prg.setVisibility(View.INVISIBLE);
@@ -74,7 +74,7 @@ public class Drive {
 
         @Override
         protected void onPreExecute() {
-            Log.d("Extirpater", "STARTING");
+            Log.d(MainActivity.logPrefix, "STARTING");
             btnControl.setText(R.string.lblStop);
             txtStatus.setText(R.string.lblErasing);
             prg.setProgress(0);
@@ -85,7 +85,7 @@ public class Drive {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                Log.d("Extirpater", "FILLING FILE TABLE");
+                Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
                 for (int x = 0; x < 20000; x++) {
                     new File(path + filePrefix + getRandomString()).createNewFile();
                     if(x % 100 == 0) {
@@ -93,7 +93,7 @@ public class Drive {
                     }
                 }
                 deleteTempFiles();
-                Log.d("Extirpater", "FILLED FILE TABLE");
+                Log.d(MainActivity.logPrefix, "FILLED FILE TABLE");
             } catch(Exception e){
                 e.printStackTrace();
                 return "Failed @ Erase File Table";
@@ -113,7 +113,7 @@ public class Drive {
                 e.printStackTrace();
                 return "Failed @ Open Temp File";
             }
-            Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
+            Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
 
             final int dataOutput = MainActivity.dataOutput;
 
@@ -122,7 +122,7 @@ public class Drive {
             long fsCache = path.getFreeSpace();
             while (fsCache >= megabyte25) {
                 if (!running) {
-                    Log.d("Extirpater", "STOPPING");
+                    Log.d(MainActivity.logPrefix, "STOPPING");
                     break;
                 }
                 try {
@@ -131,7 +131,7 @@ public class Drive {
                     break;
                 }
                 publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0)));
-                //Log.d("Extirpater", "25MB WRITTEN");
+                //Log.d(MainActivity.logPrefix, "25MB WRITTEN");
             }
 
             try {
@@ -155,7 +155,7 @@ public class Drive {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.d("Extirpater", "ENDED");
+            Log.d(MainActivity.logPrefix, "ENDED");
             deleteTempFiles();
             prg.setProgress(0);
             prg.setVisibility(View.INVISIBLE);
@@ -190,7 +190,7 @@ public class Drive {
     }
 
     private byte[] getDataArray(int dataOutput) {
-        //Log.d("Extirpater", "Generating array using " + MainActivity.dataOutput);
+        //Log.d(MainActivity.logPrefix, "Generating array using " + MainActivity.dataOutput);
         switch (dataOutput) {
             case 0:
                 return zeroes;
