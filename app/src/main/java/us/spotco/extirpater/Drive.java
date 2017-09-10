@@ -54,7 +54,7 @@ public class Drive {
     private View.OnClickListener actionListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(running) {
+            if (running) {
                 Log.d("Extirpater", "STOPPING");
                 btnControl.setText(R.string.lblStart);
                 running = false;
@@ -80,14 +80,14 @@ public class Drive {
                 Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
 
-                while(path.getFreeSpace() / megabyte >= 25) {
-                    if(!running) {
+                while (path.getFreeSpace() / megabyte >= 25) {
+                    if (!running) {
                         break;
                     }
                     try {
                         //fos.write(getRandomByteArray(megabyte * 25));
                         fos.write(zeroes);
-                    } catch(IOException e) {
+                    } catch (IOException e) {
                         break;
                     }
                     progress = 100.0 - ((((double) (path.getFreeSpace())) / spaceFree) * 100.0);
