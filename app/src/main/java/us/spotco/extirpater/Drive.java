@@ -24,7 +24,7 @@ public class Drive {
     private long spaceFree;
     private long spaceTotal;
     private static final int kilobyte = 1000;
-    private static final int megabyte = 1000000;
+    private static final int megabyte = kilobyte * 1000;
     private static final int megabyte25 = megabyte * 25;
     private static byte[] zeroes;
 
@@ -108,7 +108,7 @@ public class Drive {
                     break;
                 }
                 publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFree) * 100.0)));
-                //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
+                //Log.d("Extirpater", "25MB WRITTEN");
             }
 
             try {
