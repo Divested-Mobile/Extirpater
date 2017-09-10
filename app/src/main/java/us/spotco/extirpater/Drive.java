@@ -22,18 +22,20 @@ public class Drive {
     private Button btnControl;
     private TextView txtStatus;
 
-    private long spaceFree;
+    private long spaceFreeOrig;
     private long spaceTotal;
     private static final int kilobyte = 1000;
     private static final int megabyte = kilobyte * 1000;
     private static final int megabyte25 = megabyte * 25;
     private static byte[] zeroes;
 
+    private static final String filePrefix = "/Extirpater_Temp-";
+
     private AsyncTask eraser;
     private boolean running;
     private File tempFile;
-    private Random random = new Random();
-    private SecureRandom secureRandom = new SecureRandom();
+    private final Random random = new Random();
+    private final SecureRandom secureRandom = new SecureRandom();
 
     public Drive(File path, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
         this.path = path;
@@ -43,15 +45,16 @@ public class Drive {
         this.txtStatus = txtStatus;
 
         deleteTempFiles();
-        spaceFree = path.getFreeSpace();
+        spaceFreeOrig = path.getFreeSpace();
         spaceTotal = path.getTotalSpace();
 
-        this.txtInfo.setText(((spaceTotal - spaceFree) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
+        this.txtInfo.setText(((spaceTotal - spaceFreeOrig) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
         btnControl.setOnClickListener(actionListener);
         this.txtStatus.setText(R.string.lblIdle);
         Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
-        zeroes = generateByteArray(0xFF, megabyte * 25);
+        zeroes = generateByteArray(0xFF, megabyte25);
+        prg.setVisibility(View.INVISIBLE);
         btnControl.setEnabled(true);
     }
 
@@ -81,23 +84,40 @@ public class Drive {
 
         @Override
         protected String doInBackground(String... strings) {
-            tempFile = new File(path + "/Extirpater_Temp-" + getRandomString());
+            try {
+                Log.d("Extirpater", "FILLING FILE TABLE");
+                for (int x = 0; x < 20000; x++) {
+                    new File(path + filePrefix + getRandomString()).createNewFile();
+                    if(x % 100 == 0) {
+                        publishProgress(x / 200);
+                    }
+                }
+                deleteTempFiles();
+                Log.d("Extirpater", "FILLED FILE TABLE");
+            } catch(Exception e){
+                e.printStackTrace();
+                return "Failed @ Erase File Table";
+            }
+
+            tempFile = new File(path + filePrefix + getRandomString());
             try {
                 tempFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
-                return "Failed";
+                return "Failed @ Create Temp File";
             }
             FileOutputStream fos;
             try {
                 fos = new FileOutputStream(tempFile);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                return "Failed";
+                return "Failed @ Open Temp File";
             }
             Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
             final int dataOutput = MainActivity.dataOutput;
+
+            publishProgress(0);
 
             long fsCache = path.getFreeSpace();
             while (fsCache >= megabyte25) {
@@ -110,7 +130,7 @@ public class Drive {
                 } catch (IOException e) {
                     break;
                 }
-                publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFree) * 100.0)));
+                publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0)));
                 //Log.d("Extirpater", "25MB WRITTEN");
             }
 
@@ -119,7 +139,7 @@ public class Drive {
                 fos.close();
             } catch (IOException e) {
                 e.printStackTrace();
-                return "Failed";
+                return "Failed @ Delete File";
             }
             if (running) {
                 return "Finished";
@@ -136,9 +156,9 @@ public class Drive {
         @Override
         protected void onPostExecute(String result) {
             Log.d("Extirpater", "ENDED");
-            tempFile.delete();
             deleteTempFiles();
             prg.setProgress(0);
+            prg.setVisibility(View.INVISIBLE);
             btnControl.setText(R.string.lblStart);
             txtStatus.setText(result);
             running = false;
