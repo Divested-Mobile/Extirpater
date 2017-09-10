@@ -48,10 +48,11 @@
             android:id="@+id/btnPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblStart"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="25dp" />
+            android:layout_marginBottom="25dp"
+            android:enabled="false"
+            android:text="@string/lblStart" />
 
         <TextView
             android:id="@+id/txtStatusPrimary"
@@ -107,6 +108,7 @@
             android:text="@string/lblStart"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:enabled="false"
             android:layout_marginBottom="25dp" />
 
         <TextView

@@ -1,6 +1,7 @@
 package us.spotco.extirpater;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
@@ -22,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         Drive primary = new Drive(getCacheDir(), (TextView) findViewById(R.id.txtInfoPrimary),
                 (ProgressBar) findViewById(R.id.prgPrimary), (Button) findViewById(R.id.btnPrimary), (TextView) findViewById(R.id.txtStatusPrimary));
 
-        int ext = getExternalCacheDirs().length;
-        Drive secondary = new Drive(getExternalCacheDirs()[ext > 0 ? 1 : 0], (TextView) findViewById(R.id.txtInfoSecondary),
-                (ProgressBar) findViewById(R.id.prgSecondary), (Button) findViewById(R.id.btnSecondary), (TextView) findViewById(R.id.txtStatusSecondary));
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            int ext = getExternalCacheDirs().length;
+            Drive secondary = new Drive(getExternalCacheDirs()[ext > 1 ? 1 : 0], (TextView) findViewById(R.id.txtInfoSecondary),
+                    (ProgressBar) findViewById(R.id.prgSecondary), (Button) findViewById(R.id.btnSecondary), (TextView) findViewById(R.id.txtStatusSecondary));
+        }
     }
 
 }

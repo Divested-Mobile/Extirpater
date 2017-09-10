@@ -49,6 +49,7 @@ public class Drive {
         Log.d("Extirpater", "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
         zeroes = generateByteArray(0xFF, megabyte * 25);
+        btnControl.setEnabled(true);
     }
 
     private View.OnClickListener actionListener = new View.OnClickListener() {
