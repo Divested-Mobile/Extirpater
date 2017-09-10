@@ -118,7 +118,7 @@ public class Drive {
                 e.printStackTrace();
                 return "Failed";
             }
-            if (running) {
+            if(running) {
                 return "Finished";
             } else {
                 return "Stopped";
