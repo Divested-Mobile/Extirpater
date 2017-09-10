@@ -2,6 +2,7 @@ package us.spotco.extirpater;
 
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -62,7 +63,10 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Extirpater", "Switched to SecureRandom");
                 return true;
             case R.id.mnuAbout:
-                //Add an about screen with version and license
+                //TODO: Change this to a dialog
+                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: MIT, Copyright: 2017 Spot Communications, Inc.";
+                Snackbar about = Snackbar.make(findViewById(R.id.mainCoordinator), aboutMessage, Snackbar.LENGTH_LONG);
+                about.show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
