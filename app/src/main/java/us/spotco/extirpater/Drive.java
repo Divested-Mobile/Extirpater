@@ -25,6 +25,7 @@ public class Drive {
     private long spaceTotal;
     private static final int kilobyte = 1000;
     private static final int megabyte = 1000000;
+    private static final int megabyte25 = megabyte * 25;
     private static byte[] zeroes;
 
     private AsyncTask eraser;
@@ -94,19 +95,19 @@ public class Drive {
             }
             Log.d("Extirpater", "CREATED TEMP FILE at " + tempFile);
 
-
-            while (path.getFreeSpace() / megabyte >= 25) {
+            long fsCache;
+            while ((fsCache = path.getFreeSpace()) >= megabyte25) {
                 if (!running) {
                     Log.d("Extirpater", "STOPPING");
                     break;
                 }
                 try {
-                    //fos.write(getRandomByteArray(megabyte * 25));
+                    //fos.write(getRandomByteArray(megabyte25));
                     fos.write(zeroes);
                 } catch (IOException e) {
                     break;
                 }
-                publishProgress((int) (100.0 - ((((double) (path.getFreeSpace())) / spaceFree) * 100.0)));
+                publishProgress((int) (100.0 - ((((double) (fsCache)) / spaceFree) * 100.0)));
                 //Log.d("Extirpater", "25MB WRITTEN, PROGRESS = " + progress);
             }
 
