@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Random;
 
 public class Drive {
 
@@ -31,6 +32,7 @@ public class Drive {
     private AsyncTask eraser;
     private boolean running;
     private File tempFile;
+    private Random random = new Random();
     private SecureRandom secureRandom = new SecureRandom();
 
     public Drive(File path, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
@@ -102,8 +104,7 @@ public class Drive {
                     break;
                 }
                 try {
-                    //fos.write(getRandomByteArray(megabyte25));
-                    fos.write(zeroes);
+                    fos.write(getDataArray());
                 } catch (IOException e) {
                     break;
                 }
@@ -166,9 +167,27 @@ public class Drive {
         return temp.toString();
     }
 
-    private byte[] getRandomByteArray(int length) {
-        byte[] bytes = new byte[length];
-        secureRandom.nextBytes(bytes);
+    private byte[] getDataArray() {
+        //Log.d("Extirpater", "Generating array using " + MainActivity.dataOutput);
+        switch(MainActivity.dataOutput) {
+            case 0:
+                return zeroes;
+            case 1:
+                return getRandomByteArray(false);
+            case 2:
+                return getRandomByteArray(true);
+            default:
+                return zeroes;
+        }
+    }
+
+    private byte[] getRandomByteArray(boolean secure) {
+        byte[] bytes = new byte[megabyte25];
+        if(secure) {
+            secureRandom.nextBytes(bytes);
+        } else {
+            random.nextBytes(bytes);
+        }
         return bytes;
     }
 

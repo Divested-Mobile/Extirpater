@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mnuData"
+        android:title="@string/lblData" >
+        <menu>
+                <group android:checkableBehavior="single">
+                    <item android:id="@+id/mnuDataZeroes"
+                        android:title="@string/lblZeroes" />
+                    <item android:id="@+id/mnuDataRandom"
+                        android:title="@string/lblRandom"
+                        android:checked="true" />
+                    <item android:id="@+id/mnuDataSecureRandom"
+                        android:title="@string/lblSecureRandom" />
+                </group>
+            </menu>
+    </item>
+
+    <item android:id="@+id/mnuAbout"
+        android:title="@string/lblAbout" />
+
+</menu>
