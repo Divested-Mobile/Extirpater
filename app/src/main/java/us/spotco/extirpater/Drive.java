@@ -64,8 +64,10 @@ public class Drive {
         @Override
         public void onClick(View view) {
             if (running) {
+                btnControl.setEnabled(false);
                 running = false;
             } else {
+                btnControl.setEnabled(false);
                 eraser = new Eraser().execute("");
             }
         }
@@ -82,6 +84,7 @@ public class Drive {
             prg.setProgress(0);
             prg.setVisibility(View.VISIBLE);
             running = true;
+            btnControl.setEnabled(true);
         }
 
         @Override
@@ -177,6 +180,7 @@ public class Drive {
             btnControl.setText(R.string.lblStart);
             txtStatus.setText(result);
             running = false;
+            btnControl.setEnabled(true);
         }
     }
 
