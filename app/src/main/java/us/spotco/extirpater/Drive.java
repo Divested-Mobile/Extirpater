@@ -17,6 +17,7 @@ import java.util.Random;
 public class Drive {
 
     private File path;
+    boolean substandard;
     private TextView txtInfo;
     private ProgressBar prg;
     private Button btnControl;
@@ -26,19 +27,20 @@ public class Drive {
     private long spaceTotal;
     private static final int kilobyte = 1000;
     private static final int megabyte = kilobyte * 1000;
-    private static final int megabyte25 = megabyte * 25;
+    private static final int megabyte20 = megabyte * 20;
+    private static final int gigabyte = megabyte * 1000;
     private static byte[] zeroes;
 
     private static final String filePrefix = "/Extirpater_Temp-";
 
     private AsyncTask eraser;
     private boolean running;
-    private File tempFile;
     private final Random random = new Random();
     private final SecureRandom secureRandom = new SecureRandom();
 
-    public Drive(File path, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
+    public Drive(File path, boolean substandard, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
         this.path = path;
+        this.substandard = substandard;
         this.txtInfo = txtInfo;
         this.prg = prg;
         this.btnControl = btnControl;
@@ -53,7 +55,7 @@ public class Drive {
         this.txtStatus.setText(R.string.lblIdle);
         Log.d(MainActivity.logPrefix, "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
-        zeroes = generateByteArray(0xFF, megabyte25);
+        zeroes = generateByteArray(0xFF, megabyte20);
         prg.setVisibility(View.INVISIBLE);
         btnControl.setEnabled(true);
     }
@@ -86,15 +88,15 @@ public class Drive {
         protected String doInBackground(String... strings) {
             try {
                 Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
-                for (int x = 0; x < 20000; x++) {
+                for (int x = 0; x < (substandard ? 200 : 20000); x++) {
                     if (!running) {
-                        Log.d(MainActivity.logPrefix, "STOPPING");
+                        Log.d(MainActivity.logPrefix, "STOPPING @ FILL FILE TABLE");
                         return "Stopped";
                     }
 
                     new File(path + filePrefix + getRandomString()).createNewFile();
                     if (x % 100 == 0) {
-                        publishProgress(x / 200);
+                        publishProgress(x / (substandard ? 2 : 200));
                     }
                 }
                 deleteTempFiles();
@@ -104,47 +106,55 @@ public class Drive {
                 return "Failed @ Erase File Table";
             }
 
-            tempFile = new File(path + filePrefix + getRandomString());
-            try {
-                tempFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Failed @ Create Temp File";
-            }
-            FileOutputStream fos;
-            try {
-                fos = new FileOutputStream(tempFile);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return "Failed @ Open Temp File";
-            }
-            Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
-
-            final int dataOutput = MainActivity.dataOutput;
-
             publishProgress(0);
-
-            long fsCache = path.getFreeSpace();
-            while (fsCache >= megabyte25) {
+            final int dataOutput = MainActivity.dataOutput;
+            int chunkAmt = (int) (spaceFreeOrig / (gigabyte * 2));//Create a new temp file every 2GB
+            for(int x = 0; x <= chunkAmt; x++) { //Go one out to avoid error from rounding
                 if (!running) {
-                    Log.d(MainActivity.logPrefix, "STOPPING");
+                    Log.d(MainActivity.logPrefix, "STOPPING @ NEW FILE");
                     break;
                 }
-                try {
-                    fos.write(getDataArray(dataOutput));
-                } catch (IOException e) {
-                    break;
-                }
-                publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0)));
-                //Log.d(MainActivity.logPrefix, "25MB WRITTEN");
-            }
 
-            try {
-                fos.flush();
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                return "Failed @ Delete File";
+                File tempFile = new File(path + filePrefix + getRandomString());
+                try {
+                    tempFile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return "Failed @ Create Temp File";
+                }
+                FileOutputStream fos;
+                try {
+                    fos = new FileOutputStream(tempFile);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                    return "Failed @ Open Temp File";
+                }
+                Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
+
+                long fsCache = path.getFreeSpace();
+                int chunksWritten = 0;
+                while (fsCache >= megabyte20 && chunksWritten < 100) {//100 chunks @20MB is 2GB
+                    if (!running) {
+                        Log.d(MainActivity.logPrefix, "STOPPING @ ERASING FREE SPACE");
+                        break;
+                    }
+                    try {
+                        fos.write(getDataArray(dataOutput));
+                    } catch (IOException e) {
+                        break;
+                    }
+                    chunksWritten++;
+                    publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0)));
+                    //Log.d(MainActivity.logPrefix, "20MB WRITTEN");
+                }
+
+                try {
+                    fos.flush();
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return "Failed @ Close File";
+                }
             }
             if (running) {
                 return "Finished";
@@ -174,7 +184,7 @@ public class Drive {
         try {
             for (File f : path.listFiles()) {
                 if (f.isFile()) {
-                    if ((f + "").contains(filePrefix)) { //TODO: Verify this
+                    if ((f + "").contains(filePrefix)) {
                         f.delete();
                     }
                 }
@@ -209,7 +219,7 @@ public class Drive {
     }
 
     private byte[] generateRandomByteArray(boolean secure) {
-        byte[] bytes = new byte[megabyte25];
+        byte[] bytes = new byte[megabyte20];
         if (secure) {
             secureRandom.nextBytes(bytes);
         } else {

@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        Drive primary = new Drive(getCacheDir(), (TextView) findViewById(R.id.txtInfoPrimary),
+        Drive primary = new Drive(getCacheDir(), false, (TextView) findViewById(R.id.txtInfoPrimary),
                 (ProgressBar) findViewById(R.id.prgPrimary), (Button) findViewById(R.id.btnPrimary), (TextView) findViewById(R.id.txtStatusPrimary));
 
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
             int ext = getExternalCacheDirs().length;
-            Drive secondary = new Drive(getExternalCacheDirs()[ext > 1 ? 1 : 0], (TextView) findViewById(R.id.txtInfoSecondary),
+            Drive secondary = new Drive(getExternalCacheDirs()[ext > 1 ? 1 : 0], true, (TextView) findViewById(R.id.txtInfoSecondary),
                     (ProgressBar) findViewById(R.id.prgSecondary), (Button) findViewById(R.id.btnSecondary), (TextView) findViewById(R.id.txtStatusSecondary));
         }
     }
