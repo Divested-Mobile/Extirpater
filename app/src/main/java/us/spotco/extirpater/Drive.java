@@ -169,7 +169,7 @@ public class Drive {
         try {
             for (File f : path.listFiles()) {
                 if (f.isFile()) {
-                    if ((f + "").contains(filePrefix)) {
+                    if ((f + "").contains(filePrefix)) { //TODO: Verify this
                         f.delete();
                     }
                 }
@@ -195,15 +195,15 @@ public class Drive {
             case 0:
                 return zeroes;
             case 1:
-                return getRandomByteArray(false);
+                return generateRandomByteArray(false);
             case 2:
-                return getRandomByteArray(true);
+                return generateRandomByteArray(true);
             default:
                 return zeroes;
         }
     }
 
-    private byte[] getRandomByteArray(boolean secure) {
+    private byte[] generateRandomByteArray(boolean secure) {
         byte[] bytes = new byte[megabyte25];
         if (secure) {
             secureRandom.nextBytes(bytes);
