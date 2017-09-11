@@ -87,6 +87,11 @@ public class Drive {
             try {
                 Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
                 for (int x = 0; x < 20000; x++) {
+                    if (!running) {
+                        Log.d(MainActivity.logPrefix, "STOPPING");
+                        return "Stopped";
+                    }
+
                     new File(path + filePrefix + getRandomString()).createNewFile();
                     if (x % 100 == 0) {
                         publishProgress(x / 200);
