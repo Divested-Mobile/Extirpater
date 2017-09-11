@@ -92,7 +92,7 @@ public class Drive {
             if (MainActivity.fillFileTable) {
                 try {
                     Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
-                    for (int x = 0; x < (substandard ? 200 : 20000); x++) {
+                    for (int x = 0; x < (substandard ? 2000 : 20000); x++) {
                         if (!running) {
                             Log.d(MainActivity.logPrefix, "STOPPING @ FILL FILE TABLE");
                             return "Stopped";
@@ -100,7 +100,7 @@ public class Drive {
 
                         new File(path + filePrefix + getRandomString()).createNewFile();
                         if (x % 100 == 0) {
-                            publishProgress(x / (substandard ? 2 : 200));
+                            publishProgress(x / (substandard ? 20 : 200));
                         }
                     }
                     deleteTempFiles();

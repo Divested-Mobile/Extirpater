@@ -9,7 +9,7 @@ Instructions
 ------------
 0. (Optional) Delete unnecessary files, clear histories, clear app cache, etc.
 1. Launch the app
-2. (Optional) Change the data output using the menu
+2. (Optional) Change the erase options from the menu
 3. Click "Start" on either storage location
 4. The status of drives are shown via the status label and progress bar
 
