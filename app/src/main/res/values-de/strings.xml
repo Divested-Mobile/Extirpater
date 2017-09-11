@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStart">Anfang</string>
+    <string name="lblStop">Halt</string>
+    <string name="lblStoragePrimary">Hauptspeicher</string>
+    <string name="lblStorageSecondary">Zweitlager</string>
+    <string name="lblInfo">Info</string>
+    <string name="lblErasing">Löschen</string>
+    <string name="lblStatus">Status</string>
+    <string name="lblAbout">Über</string>
+    <string name="lblZeroes">Zeroes</string>
+    <string name="lblRandom">Random</string>
+    <string name="lblSecureRandom">SecureRandom</string>
+    <string name="lblData">Ausgabedaten</string>
+    <string name="lblIdle">Leerlauf</string>
+    <string name="lblFillFileTable">Datei füllen</string>
+</resources>

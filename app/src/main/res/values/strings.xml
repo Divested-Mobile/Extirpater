@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Extirpater</string>
+    <string name="app_name" translatable="false">Extirpater</string>
     <string name="lblStart">Start</string>
     <string name="lblStop">Stop</string>
     <string name="lblStoragePrimary">Primary Storage</string>
@@ -14,5 +15,4 @@
     <string name="lblData">Output Data</string>
     <string name="lblIdle">Idle</string>
     <string name="lblFillFileTable">Fill File Table</string>
-
 </resources>
