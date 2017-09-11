@@ -89,74 +89,70 @@ public class Drive {
 
         @Override
         protected String doInBackground(String... strings) {
-            try {
-                Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
-                for (int x = 0; x < (substandard ? 200 : 20000); x++) {
-                    if (!running) {
-                        Log.d(MainActivity.logPrefix, "STOPPING @ FILL FILE TABLE");
-                        return "Stopped";
-                    }
+            if (MainActivity.fillFileTable) {
+                try {
+                    Log.d(MainActivity.logPrefix, "FILLING FILE TABLE");
+                    for (int x = 0; x < (substandard ? 200 : 20000); x++) {
+                        if (!running) {
+                            Log.d(MainActivity.logPrefix, "STOPPING @ FILL FILE TABLE");
+                            return "Stopped";
+                        }
 
-                    new File(path + filePrefix + getRandomString()).createNewFile();
-                    if (x % 100 == 0) {
-                        publishProgress(x / (substandard ? 2 : 200));
+                        new File(path + filePrefix + getRandomString()).createNewFile();
+                        if (x % 100 == 0) {
+                            publishProgress(x / (substandard ? 2 : 200));
+                        }
                     }
+                    deleteTempFiles();
+                    Log.d(MainActivity.logPrefix, "FILLED FILE TABLE");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return "Failed @ Erase File Table";
                 }
-                deleteTempFiles();
-                Log.d(MainActivity.logPrefix, "FILLED FILE TABLE");
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "Failed @ Erase File Table";
             }
 
             publishProgress(0);
             final int dataOutput = MainActivity.dataOutput;
-            int chunkAmt = (int) (spaceFreeOrig / (gigabyte * 2));//Create a new temp file every 2GB
-            for(int x = 0; x <= chunkAmt; x++) { //Go one out to avoid error from rounding
+            long fsCache = path.getFreeSpace(); //Compute once to start
+            int chunkAmt20MB = (int) (spaceFreeOrig / megabyte20);
+            Log.d(MainActivity.logPrefix, "ERASING FREE SPACE! GOING TO CREATE " + chunkAmt20MB + "x 20MB FILES");
+            for (int x = 0; x < chunkAmt20MB; x++) {
                 if (!running) {
                     Log.d(MainActivity.logPrefix, "STOPPING @ NEW FILE");
                     break;
                 }
 
-                File tempFile = new File(path + filePrefix + getRandomString());
-                try {
-                    tempFile.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return "Failed @ Create Temp File";
-                }
-                FileOutputStream fos;
-                try {
-                    fos = new FileOutputStream(tempFile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                    return "Failed @ Open Temp File";
-                }
-                Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
-
-                long fsCache = path.getFreeSpace();
-                int chunksWritten = 0;
-                while (fsCache >= megabyte20 && chunksWritten < 100) {//100 chunks @20MB is 2GB
-                    if (!running) {
-                        Log.d(MainActivity.logPrefix, "STOPPING @ ERASING FREE SPACE");
-                        break;
-                    }
+                if (fsCache >= megabyte20) { //Do we have space for the file?
+                    File tempFile = new File(path + filePrefix + getRandomString());//Create the file
                     try {
+                        tempFile.createNewFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return "Failed @ Create Temp File";
+                    }
+                    FileOutputStream fos;//Open the file
+                    try {
+                        fos = new FileOutputStream(tempFile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                        return "Failed @ Open Temp File";
+                    }
+                    Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
+
+                    try {//Write the data
                         fos.write(getDataArray(dataOutput));
                     } catch (IOException e) {
                         break;
                     }
-                    chunksWritten++;
-                    publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0)));
-                    //Log.d(MainActivity.logPrefix, "20MB WRITTEN");
-                }
+                    publishProgress((int) (100.0 - ((((double) (fsCache = path.getFreeSpace())) / spaceFreeOrig) * 100.0))); //Update progress and cached free space
 
-                try {
-                    fos.flush();
-                    fos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return "Failed @ Close File";
+                    try {//Close the file
+                        fos.flush();
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return "Failed @ Close File";
+                    }
                 }
             }
             if (running) {

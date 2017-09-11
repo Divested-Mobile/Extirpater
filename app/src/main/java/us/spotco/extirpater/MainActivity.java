@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String logPrefix = "Extirpater";
     public static int dataOutput = 1;
+    public static boolean fillFileTable = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
+        menu.findItem(R.id.mnuFillFileTable).setChecked(fillFileTable);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.mnuFillFileTable:
+                fillFileTable = !item.isChecked();
+                item.setChecked(fillFileTable);
+                return true;
+
+            //START OF DATA OUTPUT GROUP
             case R.id.mnuDataZeroes:
                 dataOutput = 0;
                 item.setChecked(true);
@@ -63,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 Log.d(logPrefix, "Switched to SecureRandom");
                 return true;
+            //END OF DATA OUTPUT GROUP
+
             case R.id.mnuAbout:
                 //TODO: Change this to a dialog
                 String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: MIT, Copyright: 2017 Spot Communications, Inc.";
