@@ -5,9 +5,7 @@
         android:id="@+id/mnuFillFileTable"
         android:title="@string/lblFillFileTable"
         android:checkable="true" />
-    <item
-        android:id="@+id/mnuData"
-        android:title="@string/lblData">
+    <item android:title="@string/lblData">
         <menu>
             <group android:checkableBehavior="single">
                 <item

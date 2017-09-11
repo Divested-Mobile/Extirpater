@@ -16,24 +16,22 @@ import java.util.Random;
 
 public class Drive {
 
-    private File path;
-    boolean substandard;
-    private TextView txtInfo;
-    private ProgressBar prg;
-    private Button btnControl;
-    private TextView txtStatus;
+    private final File path;
+    private final boolean substandard;
+    private final TextView txtInfo;
+    private final ProgressBar prg;
+    private final Button btnControl;
+    private final TextView txtStatus;
 
-    private long spaceFreeOrig;
-    private long spaceTotal;
+    private final long spaceFreeOrig;
+    private final long spaceTotal;
     private static final int kilobyte = 1000;
     private static final int megabyte = kilobyte * 1000;
     private static final int megabyte20 = megabyte * 20;
-    private static final int gigabyte = megabyte * 1000;
     private static byte[] zeroes;
 
     private static final String filePrefix = "/Extirpater_Temp-";
 
-    private AsyncTask eraser;
     private boolean running;
     private final Random random = new Random();
     private final SecureRandom secureRandom = new SecureRandom();
@@ -60,7 +58,7 @@ public class Drive {
         btnControl.setEnabled(true);
     }
 
-    private View.OnClickListener actionListener = new View.OnClickListener() {
+    private final View.OnClickListener actionListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             if (running) {
@@ -68,7 +66,7 @@ public class Drive {
                 running = false;
             } else {
                 btnControl.setEnabled(false);
-                eraser = new Eraser().execute("");
+                new Eraser().execute("");
             }
         }
     };

@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">Extirpater</string>
-    <string name="action_settings">Settings</string>
     <string name="lblStart">Start</string>
     <string name="lblStop">Stop</string>
     <string name="lblStoragePrimary">Primary Storage</string>
     <string name="lblStorageSecondary">Secondary Storage</string>
     <string name="lblInfo">Info</string>
     <string name="lblErasing">Erasing</string>
-    <string name="lblFinished">Finished</string>
-    <string name="lblStopped">Stopped</string>
     <string name="lblStatus">Status</string>
     <string name="lblAbout">About</string>
     <string name="lblZeroes">Zeroes</string>
