@@ -56,7 +56,7 @@ public class Drive {
         this.btnControl = btnControl;
         this.txtStatus = txtStatus;
 
-        deleteTempFiles();
+        Utils.deleteFilesByPrefix(path, filePrefix);
         spaceFreeOrig = path.getFreeSpace();
         spaceTotal = path.getTotalSpace();
 
@@ -65,7 +65,7 @@ public class Drive {
         this.txtStatus.setText(R.string.lblIdle);
         Log.d(MainActivity.logPrefix, "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
-        zeroes = generateByteArray(0xFF, megabyte20);
+        zeroes = Utils.generateByteArray(0xFF, megabyte20);
         btnControl.setEnabled(true);
     }
 
@@ -107,12 +107,12 @@ public class Drive {
                             return "Stopped";
                         }
 
-                        new File(path + filePrefix + getRandomString()).createNewFile();
+                        new File(path + filePrefix + Utils.getRandomString(cmwc4096RNG, 8)).createNewFile();
                         if (x % 100 == 0) {
                             publishProgress(x / (substandard ? 20 : 200));
                         }
                     }
-                    deleteTempFiles();
+                    Utils.deleteFilesByPrefix(path, filePrefix);
                     Log.d(MainActivity.logPrefix, "FILLED FILE TABLE");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -132,7 +132,7 @@ public class Drive {
                 }
 
                 if (fsCache >= megabyte20) { //Do we have space for the file?
-                    File tempFile = new File(path + filePrefix + getRandomString());//Create the file
+                    File tempFile = new File(path + filePrefix + Utils.getRandomString(secureRandom, 8));//Create the file
                     try {
                         tempFile.createNewFile();
                     } catch (IOException e) {
@@ -146,10 +146,10 @@ public class Drive {
                         e.printStackTrace();
                         return "Failed @ Open Temp File";
                     }
-                    Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
+                    //Log.d(MainActivity.logPrefix, "CREATED TEMP FILE at " + tempFile);
 
                     try {//Write the data
-                        fos.write(getDataArray(dataOutput));
+                        fos.write(getDataArray(dataOutput, megabyte20));
                     } catch (IOException e) {
                         break;
                     }
@@ -179,7 +179,7 @@ public class Drive {
         @Override
         protected void onPostExecute(String result) {
             Log.d(MainActivity.logPrefix, "ENDED");
-            deleteTempFiles();
+            Utils.deleteFilesByPrefix(path, filePrefix);
             prg.setProgress(0);
             prg.setVisibility(View.INVISIBLE);
             btnControl.setText(R.string.lblStart);
@@ -189,72 +189,38 @@ public class Drive {
         }
     }
 
-    private void deleteTempFiles() {
-        try {
-            for (File f : path.listFiles()) {
-                if (f.isFile()) {
-                    if ((f + "").contains(filePrefix)) {
-                        f.delete();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
-    private String getRandomString() {
-        String base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < 8; i++) {
-            int rn = secureRandom.nextInt(base.length());
-            temp.append(base.substring(rn, rn + 1));
-        }
-        return temp.toString();
-    }
 
-    private byte[] getDataArray(int dataOutput) {
+    private byte[] getDataArray(int dataOutput, int size) {
         //Log.d(MainActivity.logPrefix, "Generating array using " + MainActivity.dataOutput);
         switch (dataOutput) {
             case 0:
                 return zeroes; //0ms
             case 1:
-                return generateRandomByteArray(random); //~350ms
+                return Utils.generateRandomByteArray(random, size); //~350ms
             case 2:
-                return generateRandomByteArray(xorShiftRNG); //~690ms
+                return Utils.generateRandomByteArray(xorShiftRNG, size); //~690ms
             case 3:
-                return generateRandomByteArray(mersenneTwisterRNG); //~750ms
+                return Utils.generateRandomByteArray(mersenneTwisterRNG, size); //~750ms
             case 4:
-                return generateRandomByteArray(cmwc4096RNG); //~780ms
+                return Utils.generateRandomByteArray(cmwc4096RNG, size); //~780ms
             case 5:
-                return generateRandomByteArray(secureRandom); //~2880ms
+                return Utils.generateRandomByteArray(secureRandom, size); //~2880ms
             default:
                 return zeroes;
         }
     }
 
-    private void benchmark() {
+    private void benchmarkGetDataArray() {
         for (int x = 0; x < 6; x++) {
             for (int c = 0; c < 5; c++) {
                 long preTime = SystemClock.elapsedRealtime();
-                getDataArray(x);
+                getDataArray(x, megabyte20);
                 Log.d(MainActivity.logPrefix, "BENCHMARK - RNG: " + x + ", Pass: " + c + ", Time Spent: " + (SystemClock.elapsedRealtime() - preTime));
             }
         }
     }
 
-    private byte[] generateRandomByteArray(Random rng) {
-        byte[] bytes = new byte[megabyte20];
-        rng.nextBytes(bytes);
-        return bytes;
-    }
 
-    private byte[] generateByteArray(int b, int length) {
-        byte[] bytes = new byte[length];
-        for (int x = 0; x < length; x++) {
-            bytes[x] = (byte) b;
-        }
-        return bytes;
-    }
 
 }

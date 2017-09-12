@@ -36,3 +36,7 @@ Goals
 - Don't eat batteries
 - Use minimal permissions
 - Use libraries only when necessary
+
+Credits
+-------
+- Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
