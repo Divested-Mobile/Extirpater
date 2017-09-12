@@ -15,7 +15,7 @@ Instructions
 
 "Data Output" Option
 --------------------
-- The list is ranked by security and coincidently by speed
+- The list is ranked roughly by how "secure" the output is
 - If you want a super quick erase use "Zeroes", but be warned that it might not do anything due to various factors (flash, cache, compression, etc.)
 - If you want a quick erase use "Random"
 - If you want a quick but more secure erase use "CMWC4096RNG"

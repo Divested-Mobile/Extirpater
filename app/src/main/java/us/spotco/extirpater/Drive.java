@@ -211,11 +211,11 @@ public class Drive {
 
     private void benchmarkGetDataArray() {
         for (int x = 0; x < 6; x++) {
-            for (int c = 0; c < 5; c++) {
-                long preTime = SystemClock.elapsedRealtime();
+            long preTime = SystemClock.elapsedRealtime();
+            for (int c = 0; c < 5; c++) { //Generate 100MB
                 getDataArray(x, megabyte20);
-                Log.d(MainActivity.logPrefix, "BENCHMARK - RNG: " + x + ", Pass: " + c + ", Time Spent: " + (SystemClock.elapsedRealtime() - preTime));
             }
+            Log.d(MainActivity.logPrefix, "BENCHMARK - RNG: " + x + ", Time Spent: " + (SystemClock.elapsedRealtime() - preTime));
         }
     }
 
