@@ -9,8 +9,6 @@
     <string name="lblStatus">Status</string>
     <string name="lblAbout">Über</string>
     <string name="lblZeroes">Zeroes</string>
-    <string name="lblRandom">Random</string>
-    <string name="lblSecureRandom">SecureRandom</string>
     <string name="lblData">Ausgabedaten</string>
     <string name="lblIdle">Leerlauf</string>
     <string name="lblFillFileTable">Datei füllen</string>

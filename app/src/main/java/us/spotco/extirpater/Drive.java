@@ -54,7 +54,6 @@ public class Drive {
         Log.d(MainActivity.logPrefix, "CREATED DRIVE: Path = " + path + ", Size = " + spaceTotal);
 
         zeroes = generateByteArray(0xFF, megabyte20);
-        prg.setVisibility(View.INVISIBLE);
         btnControl.setEnabled(true);
     }
 
@@ -208,21 +207,17 @@ public class Drive {
             case 0:
                 return zeroes;
             case 1:
-                return generateRandomByteArray(false);
+                return generateRandomByteArray(random);
             case 2:
-                return generateRandomByteArray(true);
+                return generateRandomByteArray(secureRandom);
             default:
                 return zeroes;
         }
     }
 
-    private byte[] generateRandomByteArray(boolean secure) {
+    private byte[] generateRandomByteArray(Random rng) {
         byte[] bytes = new byte[megabyte20];
-        if (secure) {
-            secureRandom.nextBytes(bytes);
-        } else {
-            random.nextBytes(bytes);
-        }
+        rng.nextBytes(bytes);
         return bytes;
     }
 

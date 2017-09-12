@@ -42,7 +42,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
             android:minHeight="75dp"
-            android:minWidth="250dp" />
+            android:minWidth="250dp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnPrimary"
@@ -99,7 +100,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="50dp"
             android:minHeight="75dp"
-            android:minWidth="250dp" />
+            android:minWidth="250dp"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnSecondary"

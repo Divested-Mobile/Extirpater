@@ -9,8 +9,6 @@
     <string name="lblStatus">Estado</string>
     <string name="lblAbout">Acerca de</string>
     <string name="lblZeroes">Ceros</string>
-    <string name="lblRandom">Random</string>
-    <string name="lblSecureRandom">SecureRandom</string>
     <string name="lblData">Datos resultantes</string>
     <string name="lblIdle">Ocioso</string>
     <string name="lblFillFileTable">Tabla de archivos de relleno</string>

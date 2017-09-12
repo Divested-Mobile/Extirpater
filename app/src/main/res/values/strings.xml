@@ -10,8 +10,8 @@
     <string name="lblStatus">Status</string>
     <string name="lblAbout">About</string>
     <string name="lblZeroes">Zeroes</string>
-    <string name="lblRandom">Random</string>
-    <string name="lblSecureRandom">SecureRandom</string>
+    <string name="lblRandom" translatable="false">Random</string>
+    <string name="lblSecureRandom" translatable="false">SecureRandom</string>
     <string name="lblData">Output Data</string>
     <string name="lblIdle">Idle</string>
     <string name="lblFillFileTable">Fill File Table</string>
