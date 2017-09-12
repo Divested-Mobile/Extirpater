@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String logPrefix = "Extirpater";
-    public static int dataOutput = 1;
+    public static int dataOutput = 4;
     public static boolean fillFileTable = true;
 
     @Override
@@ -66,8 +66,23 @@ public class MainActivity extends AppCompatActivity {
                 item.setChecked(true);
                 Log.d(logPrefix, "Switched to Random");
                 return true;
-            case R.id.mnuDataSecureRandom:
+            case R.id.mnuDataXORShiftRNG:
                 dataOutput = 2;
+                item.setChecked(true);
+                Log.d(logPrefix, "Switched to XORShiftRNG");
+                return true;
+            case R.id.mnuDataMersenneTwisterRNG:
+                dataOutput = 3;
+                item.setChecked(true);
+                Log.d(logPrefix, "Switched to MersenneTwisterRNG");
+                return true;
+            case R.id.mnuDataCMWC4096RNG:
+                dataOutput = 4;
+                item.setChecked(true);
+                Log.d(logPrefix, "Switched to CMWC4096RNG");
+                return true;
+            case R.id.mnuDataSecureRandom:
+                dataOutput = 5;
                 item.setChecked(true);
                 Log.d(logPrefix, "Switched to SecureRandom");
                 return true;

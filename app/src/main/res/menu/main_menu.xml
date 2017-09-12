@@ -13,7 +13,16 @@
                     android:title="@string/lblZeroes" />
                 <item
                     android:id="@+id/mnuDataRandom"
-                    android:title="@string/lblRandom"
+                    android:title="@string/lblRandom" />
+                <item
+                    android:id="@+id/mnuDataXORShiftRNG"
+                    android:title="@string/lblXORShiftRNG" />
+                <item
+                    android:id="@+id/mnuDataMersenneTwisterRNG"
+                    android:title="@string/lblMersenneTwisterRNG" />
+                <item
+                    android:id="@+id/mnuDataCMWC4096RNG"
+                    android:title="@string/lblCMWC4096RNG"
                     android:checked="true" />
                 <item
                     android:id="@+id/mnuDataSecureRandom"

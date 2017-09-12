@@ -1,11 +1,16 @@
 package us.spotco.extirpater;
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.uncommons.maths.random.CMWC4096RNG;
+import org.uncommons.maths.random.MersenneTwisterRNG;
+import org.uncommons.maths.random.XORShiftRNG;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,13 +33,20 @@ public class Drive {
     private static final int kilobyte = 1000;
     private static final int megabyte = kilobyte * 1000;
     private static final int megabyte20 = megabyte * 20;
-    private static byte[] zeroes;
 
     private static final String filePrefix = "/Extirpater_Temp-";
-
     private boolean running;
+
+    private static byte[] zeroes;
     private final Random random = new Random();
+    //private final SplittableRandom splittableRandom = new SplittableRandom(); //Only on SDK 24+
+    private final XORShiftRNG xorShiftRNG = new XORShiftRNG();
+    private final MersenneTwisterRNG mersenneTwisterRNG = new MersenneTwisterRNG();
+    private final CMWC4096RNG cmwc4096RNG = new CMWC4096RNG();
+    //private final XoRoShiRo128PlusRandom xorRandom = new XoRoShiRo128PlusRandom(); //DSIUtils doesn't support Android
     private final SecureRandom secureRandom = new SecureRandom();
+    //private final SecureRandom secureRandomStrong = SecureRandom.getInstanceStrong(); //Only on SDK 26+
+    //private final AESCounterRNG aesCounterRNG = new AESCounterRNG(); //Doesn't support Android
 
     public Drive(File path, boolean substandard, TextView txtInfo, ProgressBar prg, Button btnControl, TextView txtStatus) {
         this.path = path;
@@ -205,13 +217,29 @@ public class Drive {
         //Log.d(MainActivity.logPrefix, "Generating array using " + MainActivity.dataOutput);
         switch (dataOutput) {
             case 0:
-                return zeroes;
+                return zeroes; //0ms
             case 1:
-                return generateRandomByteArray(random);
+                return generateRandomByteArray(random); //~350ms
             case 2:
-                return generateRandomByteArray(secureRandom);
+                return generateRandomByteArray(xorShiftRNG); //~690ms
+            case 3:
+                return generateRandomByteArray(mersenneTwisterRNG); //~750ms
+            case 4:
+                return generateRandomByteArray(cmwc4096RNG); //~780ms
+            case 5:
+                return generateRandomByteArray(secureRandom); //~2880ms
             default:
                 return zeroes;
+        }
+    }
+
+    private void benchmark() {
+        for (int x = 0; x < 6; x++) {
+            for (int c = 0; c < 5; c++) {
+                long preTime = SystemClock.elapsedRealtime();
+                getDataArray(x);
+                Log.d(MainActivity.logPrefix, "BENCHMARK - RNG: " + x + ", Pass: " + c + ", Time Spent: " + (SystemClock.elapsedRealtime() - preTime));
+            }
         }
     }
 
