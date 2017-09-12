@@ -107,7 +107,7 @@ public class Drive {
                             return "Stopped";
                         }
 
-                        new File(path + filePrefix + Utils.getRandomString(cmwc4096RNG, 8)).createNewFile();
+                        new File(path + filePrefix + Utils.getRandomString(cmwc4096RNG, 16)).createNewFile();
                         if (x % 100 == 0) {
                             publishProgress(x / (substandard ? 20 : 200));
                         }
@@ -132,7 +132,7 @@ public class Drive {
                 }
 
                 if (fsCache >= megabyte20) { //Do we have space for the file?
-                    File tempFile = new File(path + filePrefix + Utils.getRandomString(secureRandom, 8));//Create the file
+                    File tempFile = new File(path + filePrefix + Utils.getRandomString(secureRandom, 16));//Create the file
                     try {
                         tempFile.createNewFile();
                     } catch (IOException e) {
@@ -189,8 +189,6 @@ public class Drive {
         }
     }
 
-
-
     private byte[] getDataArray(int dataOutput, int size) {
         //Log.d(MainActivity.logPrefix, "Generating array using " + MainActivity.dataOutput);
         switch (dataOutput) {
@@ -221,6 +219,19 @@ public class Drive {
         }
     }
 
-
+    /*
+    benchmarkGetRandomString(random); //~41ms
+    benchmarkGetRandomString(xorShiftRNG); //~44ms
+    benchmarkGetRandomString(mersenneTwisterRNG); //~45ms
+    benchmarkGetRandomString(cmwc4096RNG); //~48ms
+    benchmarkGetRandomString(secureRandom); //302ms
+    */
+    public static void benchmarkGetRandomString(Random rng) {
+        long preTime = SystemClock.elapsedRealtime();
+        for (int c = 0; c < 1000; c++) {
+            Utils.getRandomString(rng, 32);
+        }
+        Log.d(MainActivity.logPrefix, "BENCHMARK - RNG: " + rng.toString() + ", Time Spent: " + (SystemClock.elapsedRealtime() - preTime));
+    }
 
 }

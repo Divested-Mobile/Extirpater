@@ -17,7 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public static final String logPrefix = "Extirpater";
-    public static int dataOutput = 4;
+    public static int dataOutput = 1;
     public static boolean fillFileTable = true;
 
     @Override

@@ -13,6 +13,14 @@ Instructions
 3. Click "Start" on either storage location
 4. The status of drives are shown via the status label and progress bar
 
+"Data Output" Option
+--------------------
+- The list is ranked by security and coincidently by speed
+- If you want a super quick erase use "Zeroes", but be warned that it might not do anything due to various factors (flash, cache, compression, etc.)
+- If you want a quick erase use "Random"
+- If you want a quick but more secure erase use "CMWC4096RNG"
+- If you want a cryptographically secure, but very slow erase use "SecureRandom"
+
 Known Issues
 ------------
 - On devices without real external storage, the two shown are both internal
