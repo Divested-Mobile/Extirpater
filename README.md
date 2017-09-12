@@ -5,6 +5,13 @@ Requirements
 ------------
 - Android KitKit 4.4.4 and higher
 
+Uses
+----
+- Before selling your device
+- After enabling encryption
+- After deleting many apps/files
+- To maintain good data hygiene
+
 Instructions
 ------------
 0. (Optional) Delete unnecessary files, clear histories, clear app cache, etc.
