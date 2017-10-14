@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.mnuAbout:
                 //TODO: Change this to a dialog
-                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: MIT, Copyright: 2017 Spot Communications, Inc.";
+                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: GPLv3, Copyright: 2017 Spot Communications, Inc.";
                 Snackbar about = Snackbar.make(findViewById(R.id.mainCoordinator), aboutMessage, Snackbar.LENGTH_LONG);
                 about.show();
                 return true;
