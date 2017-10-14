@@ -190,7 +190,7 @@ public class Drive {
     }
 
     private byte[] getDataArray(int dataOutput, int size) {
-        //Log.d(MainActivity.logPrefix, "Generating array using " + MainActivity.dataOutput);
+        //Log.d(MainActivity.logPrefix, "Generating array using " + dataOutput);
         switch (dataOutput) {
             case 0:
                 return zeroes; //0ms
