@@ -9,7 +9,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.uncommons.maths.random.CMWC4096RNG;
+import org.uncommons.maths.random.DevRandomSeedGenerator;
 import org.uncommons.maths.random.MersenneTwisterRNG;
+import org.uncommons.maths.random.SecureRandomSeedGenerator;
+import org.uncommons.maths.random.SeedGenerator;
 import org.uncommons.maths.random.XORShiftRNG;
 
 import java.io.File;
@@ -38,11 +41,13 @@ public class Drive {
     private boolean running;
 
     private static byte[] zeroes;
+    private SeedGenerator seedGeneratorSecureRandom = null;
+    private SeedGenerator seedGeneratorDevRandom = null;
     private final Random random = new Random();
     //private final SplittableRandom splittableRandom = new SplittableRandom(); //Only on SDK 24+
-    private final XORShiftRNG xorShiftRNG = new XORShiftRNG();
-    private final MersenneTwisterRNG mersenneTwisterRNG = new MersenneTwisterRNG();
-    private final CMWC4096RNG cmwc4096RNG = new CMWC4096RNG();
+    private XORShiftRNG xorShiftRNG = null;
+    private MersenneTwisterRNG mersenneTwisterRNG = null;
+    private CMWC4096RNG cmwc4096RNG = null;
     //private final XoRoShiRo128PlusRandom xorRandom = new XoRoShiRo128PlusRandom(); //DSIUtils doesn't support Android
     private final SecureRandom secureRandom = new SecureRandom();
     //private final SecureRandom secureRandomStrong = SecureRandom.getInstanceStrong(); //Only on SDK 26+
@@ -59,6 +64,17 @@ public class Drive {
         Utils.deleteFilesByPrefix(path, filePrefix);
         spaceFreeOrig = path.getFreeSpace();
         spaceTotal = path.getTotalSpace();
+
+        try {
+            seedGeneratorSecureRandom = new SecureRandomSeedGenerator();
+            seedGeneratorDevRandom = new DevRandomSeedGenerator();
+
+            xorShiftRNG = new XORShiftRNG(seedGeneratorDevRandom);
+            mersenneTwisterRNG = new MersenneTwisterRNG(seedGeneratorDevRandom);
+            cmwc4096RNG = new CMWC4096RNG(seedGeneratorSecureRandom);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
 
         this.txtInfo.setText(((spaceTotal - spaceFreeOrig) / megabyte) + "MB  used of " + (spaceTotal / megabyte) + "MB");
         btnControl.setOnClickListener(actionListener);
@@ -107,7 +123,7 @@ public class Drive {
                             return "Stopped";
                         }
 
-                        new File(path + filePrefix + Utils.getRandomString(cmwc4096RNG, 16)).createNewFile();
+                        new File(path + filePrefix + Utils.getRandomString(mersenneTwisterRNG, 16)).createNewFile();
                         if (x % 100 == 0) {
                             publishProgress(x / (substandard ? 20 : 200));
                         }
