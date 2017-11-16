@@ -9,7 +9,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.uncommons.maths.random.CMWC4096RNG;
-import org.uncommons.maths.random.DevRandomSeedGenerator;
 import org.uncommons.maths.random.MersenneTwisterRNG;
 import org.uncommons.maths.random.SecureRandomSeedGenerator;
 import org.uncommons.maths.random.SeedGenerator;
@@ -19,6 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -41,9 +41,7 @@ public class Drive {
     private boolean running;
 
     private static byte[] zeroes;
-    private SeedGenerator seedGeneratorSecureRandom = null;
-    private SeedGenerator seedGeneratorDevRandom = null;
-    private final Random random = new Random();
+    private Random random = null;
     //private final SplittableRandom splittableRandom = new SplittableRandom(); //Only on SDK 24+
     private XORShiftRNG xorShiftRNG = null;
     private MersenneTwisterRNG mersenneTwisterRNG = null;
@@ -66,13 +64,12 @@ public class Drive {
         spaceTotal = path.getTotalSpace();
 
         try {
-            seedGeneratorSecureRandom = new SecureRandomSeedGenerator();
-            seedGeneratorDevRandom = new DevRandomSeedGenerator();
-
-            xorShiftRNG = new XORShiftRNG(seedGeneratorDevRandom);
-            mersenneTwisterRNG = new MersenneTwisterRNG(seedGeneratorDevRandom);
-            cmwc4096RNG = new CMWC4096RNG(seedGeneratorSecureRandom);
-        } catch(Exception e) {
+            SeedGenerator seedGenerator = new SecureRandomSeedGenerator();
+            random = new Random(ByteBuffer.wrap(seedGenerator.generateSeed(16)).getLong());
+            xorShiftRNG = new XORShiftRNG(seedGenerator);
+            mersenneTwisterRNG = new MersenneTwisterRNG(seedGenerator);
+            cmwc4096RNG = new CMWC4096RNG(seedGenerator);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -123,7 +120,7 @@ public class Drive {
                             return "Stopped";
                         }
 
-                        new File(path + filePrefix + Utils.getRandomString(mersenneTwisterRNG, 16)).createNewFile();
+                        new File(path + filePrefix + Utils.getRandomString(cmwc4096RNG, 16)).createNewFile();
                         if (x % 100 == 0) {
                             publishProgress(x / (substandard ? 20 : 200));
                         }
