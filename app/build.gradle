@@ -7,7 +7,7 @@ android {
         applicationId "us.spotco.extirpater"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 6
+        versionCode 7
         versionName "1.2"
     }
     buildTypes {
@@ -21,6 +21,7 @@ android {
             shrinkResources true
             minifyEnabled true
             useProguard true
+            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
