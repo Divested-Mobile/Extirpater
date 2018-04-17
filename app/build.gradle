@@ -7,16 +7,16 @@ android {
         applicationId "us.spotco.extirpater"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 9
+        versionCode 10
         versionName "1.2"
+        resConfigs "en", "de", "es"
     }
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
             minifyEnabled true
-            useProguard false
             zipAlignEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            useProguard false
         }
         release {
             shrinkResources true
