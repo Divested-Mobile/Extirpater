@@ -1,6 +1,6 @@
 /*
 Extirpater: A free space eraser for Android
-Copyright (c) 2017-2018 Spot Communications, Inc.
+Copyright (c) 2017-2018 Divested Computing, Inc.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.mnuAbout:
                 //TODO: Change this to a dialog
-                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: GPLv3, Copyright: 2017 Spot Communications, Inc.";
+                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: GPLv3, Copyright: 2017 Divested Computing, Inc.";
                 Snackbar about = Snackbar.make(findViewById(R.id.mainCoordinator), aboutMessage, Snackbar.LENGTH_LONG);
                 about.show();
                 return true;
