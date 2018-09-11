@@ -12,6 +12,12 @@ Uses
 - After deleting many apps/files
 - To maintain good data hygiene
 
+Warnings
+-------
+- Do not overuse this tool
+- Excessive use will destroy your NAND flash storage
+- Ensure important files are backed up before use
+
 Instructions
 ------------
 0. (Optional) Delete unnecessary files, clear histories, clear app cache, etc.
