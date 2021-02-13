@@ -20,7 +20,7 @@ Warnings
 
 Instructions
 ------------
-0. (Optional) Delete unnecessary files, clear histories, clear app cache, etc.
+0. (Optional) Delete unnecessary files, clear histories, clear app cache, factory reset, etc.
 1. Launch the app
 2. (Optional) Change the erase options from the menu
 3. Click "Start" on either storage location
