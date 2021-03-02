@@ -61,3 +61,4 @@ Goals
 Credits
 -------
 - Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
+- Icons (Apache-2.0): Google/Android/AOSP
