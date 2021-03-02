@@ -16,7 +16,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.DayNight" />
 
-    <!-- Credit: https://stackoverflow.com/a/14533085 -->
+    <!-- Credit (CC BY-SA 3.0): https://stackoverflow.com/a/14533085 -->
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">4dp</item>
