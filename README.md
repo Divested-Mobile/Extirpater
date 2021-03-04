@@ -1,6 +1,10 @@
 Extirpater
 ==========
 
+Overview
+--------
+A high performance free space eraser.
+
 Requirements
 ------------
 - Android KitKit 4.4.4 and higher
@@ -60,5 +64,5 @@ Goals
 
 Credits
 -------
-- Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
-- Icons (Apache-2.0): Google/Android/AOSP
+- Library: Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
+- Icons: Google/Android/AOSP, License: Apache 2.0, https://google.github.io/material-design-icons/
