@@ -64,5 +64,6 @@ Goals
 
 Credits
 -------
+- @inkhorn for the Portuguese translations.
 - Library: Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
 - Icons: Google/Android/AOSP, License: Apache 2.0, https://google.github.io/material-design-icons/
