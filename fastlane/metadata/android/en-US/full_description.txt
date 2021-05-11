@@ -1,0 +1,5 @@
+<p>A high performance free space eraser, the first on Android. Use before selling your device, after enabling encryption, or after deleting many apps/files.</p>
+<ul>
+<li>Due to how flash drives work and the partition layout of devices, it'll never be possible to fully fill the drive.</li>
+<li>Warning! Excessive use WILL destroy your device!</li>
+</ul>
