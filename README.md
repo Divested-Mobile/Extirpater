@@ -5,6 +5,10 @@ Overview
 --------
 A high performance free space eraser.
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/us.spotco.extirpater/)
+
 Requirements
 ------------
 - Android KitKit 4.4.4 and higher
