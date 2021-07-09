@@ -9,6 +9,18 @@ A high performance free space eraser.
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/us.spotco.extirpater/)
 
+What is free space erasing?
+---------------------------
+- Typically when you delete a file it is not really deleted, it is merely removed from the file system's index.
+- A free space eraser tool such as this one fills the remaining space of your drive with random noise files and then deletes them.
+- This process makes deleted files for the most part irrecoverable.
+
+What is file table filling?
+---------------------------
+- On some file systems, deleted file names can still be accessible in backup index databases.
+- By creating many tens or hundreds of thousands of empty files with different random names you can push out the old files.
+- This process makes deleted file names for the most part irrecoverable.
+
 Requirements
 ------------
 - Android KitKit 4.4.4 and higher

@@ -3,3 +3,15 @@
 <li>Due to how flash drives work and the partition layout of devices, it'll never be possible to fully fill the drive.</li>
 <li>Warning! Excessive use WILL destroy your device!</li>
 </ul>
+<p>What is free space erasing?</p>
+<ul>
+<li>Typically when you delete a file it is not really deleted, it is merely removed from the file system's index.</li>
+<li>A free space eraser tool such as this one fills the remaining space of your drive with random noise files and then deletes them.</li>
+<li>This process makes deleted files for the most part irrecoverable.</li>
+</ul>
+<p>What is file table filling?</p>
+<ul>
+<li>On some file systems, deleted file names can still be accessible in backup index databases.</li>
+<li>By creating many tens or hundreds of thousands of empty files with different random names you can push out the old files.</li>
+<li>This process makes deleted file names for the most part irrecoverable.</li>
+</ul>
