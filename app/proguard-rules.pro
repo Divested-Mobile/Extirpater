@@ -25,3 +25,6 @@
 #-renamesourcefileattribute SourceFile
 
 -optimizationpasses 3
+
+# Disable obfuscation
+-dontobfuscate
