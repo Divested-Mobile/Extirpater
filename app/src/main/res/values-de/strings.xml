@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="lblStart">Anfang</string>
-    <string name="lblStop">Halt</string>
+    <string name="lblStart">Starten</string>
+    <string name="lblStop">Abbrechen</string>
     <string name="lblStoragePrimary">Hauptspeicher</string>
-    <string name="lblStorageSecondary">Zweitlager</string>
+    <string name="lblStorageSecondary">Erweiterungsspeicher</string>
     <string name="lblInfo">Info</string>
     <string name="lblErasing">Löschen</string>
     <string name="lblStatus">Status</string>
     <string name="lblAbout">Über</string>
-    <string name="lblZeroes">Zeroes</string>
-    <string name="lblData">Ausgabedaten</string>
+    <string name="lblZeroes">Nullen</string>
+    <string name="lblData">Datentyp</string>
     <string name="lblIdle">Leerlauf</string>
-    <string name="lblFillFileTable">Datei füllen</string>
+    <string name="lblFillFileTable">Dateitabelle löschen</string>
 </resources>
