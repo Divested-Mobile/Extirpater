@@ -1,3 +1,5 @@
+![Banner](https://divestos.org/images/featureGraphics/Extirpater.png)
+
 Extirpater
 ==========
 
