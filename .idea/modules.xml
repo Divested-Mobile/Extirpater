@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Extirpater.iml" filepath="$PROJECT_DIR$/Extirpater.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Extirpater.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Extirpater.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Extirpater.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Extirpater.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Extirpater.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Extirpater.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Extirpater.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Extirpater.app.unitTest.iml" />
     </modules>
   </component>
 </project>

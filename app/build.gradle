@@ -1,39 +1,37 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     defaultConfig {
         applicationId "us.spotco.extirpater"
         minSdkVersion 14
-        targetSdkVersion 30
-        versionCode 24
+        targetSdkVersion 32
+        versionCode 25
         versionName "1.4"
-        resConfigs "en", "de", "es", "pt"
+        resConfigs 'en', 'de', 'es', 'pt'
     }
     buildTypes {
         debug {
             applicationIdSuffix ".debug"
             minifyEnabled true
             zipAlignEnabled true
-            useProguard false
         }
         release {
             shrinkResources true
             minifyEnabled true
             zipAlignEnabled true
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lintOptions {
+    lint {
         abortOnError false
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.material:material:1.4.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.7.0-beta01'
     implementation ('org.uncommons.maths:uncommons-maths:1.2.2') {
         exclude group: 'jfree'
     }
