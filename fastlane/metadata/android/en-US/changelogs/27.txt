@@ -1,0 +1,2 @@
+* Updated dependencies
+* Themed app icon support
