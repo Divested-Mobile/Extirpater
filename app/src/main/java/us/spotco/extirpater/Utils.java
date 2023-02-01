@@ -42,7 +42,7 @@ public class Utils {
         StringBuilder temp = new StringBuilder();
         for (int i = 0; i < length; i++) {
             int rn = rng.nextInt(base.length());
-            temp.append(base.substring(rn, rn + 1));
+            temp.append(base.charAt(rn));
         }
         return temp.toString();
     }

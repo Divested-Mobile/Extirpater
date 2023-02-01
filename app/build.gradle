@@ -6,8 +6,8 @@ android {
         applicationId "us.spotco.extirpater"
         minSdkVersion 14
         targetSdkVersion 32
-        versionCode 27
-        versionName "1.4"
+        versionCode 28
+        versionName "1.5"
         resConfigs 'en', 'de', 'es', 'pt'
     }
     buildTypes {
@@ -29,9 +29,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.material:material:1.8.0-alpha01'
     implementation ('org.uncommons.maths:uncommons-maths:1.2.2') {
         exclude group: 'jfree'
     }

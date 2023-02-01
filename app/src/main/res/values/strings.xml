@@ -3,6 +3,7 @@
     <string name="app_name" translatable="false">Extirpater</string>
     <string name="lblStart">Start</string>
     <string name="lblStop">Stop</string>
+    <string name="lblFullCredits">Credits</string>
     <string name="lblStoragePrimary">Primary Storage</string>
     <string name="lblStorageSecondary">Secondary Storage</string>
     <string name="lblInfo">Info</string>

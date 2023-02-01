@@ -17,22 +17,19 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 package us.spotco.extirpater;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     public static final String logPrefix = "Extirpater";
     public static int dataOutput = 1;
@@ -40,21 +37,27 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            setTheme(android.R.style.Theme_DeviceDefault_DayNight);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.content_main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            findViewById(R.id.itmDivider).setBackgroundColor(getResources().getColor(android.R.color.system_accent1_500));
+        }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
-        Drive primary = new Drive(getCacheDir(), false, (TextView) findViewById(R.id.txtInfoPrimary),
-                (ProgressBar) findViewById(R.id.prgPrimary), (Button) findViewById(R.id.btnPrimary), (TextView) findViewById(R.id.txtStatusPrimary));
+        Drive primary = new Drive(getCacheDir(), false, findViewById(R.id.txtInfoPrimary),
+                findViewById(R.id.prgPrimary), findViewById(R.id.btnPrimary), findViewById(R.id.txtStatusPrimary));
 
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             int ext = getExternalCacheDirs().length;
-            Drive secondary = new Drive(getExternalCacheDirs()[ext > 1 ? 1 : 0], true, (TextView) findViewById(R.id.txtInfoSecondary),
-                    (ProgressBar) findViewById(R.id.prgSecondary), (Button) findViewById(R.id.btnSecondary), (TextView) findViewById(R.id.txtStatusSecondary));
+            Drive secondary = new Drive(getExternalCacheDirs()[ext > 1 ? 1 : 0], true, findViewById(R.id.txtInfoSecondary),
+                    findViewById(R.id.prgSecondary), findViewById(R.id.btnSecondary), findViewById(R.id.txtStatusSecondary));
         }
     }
 
@@ -108,10 +111,12 @@ public class MainActivity extends AppCompatActivity {
             //END OF DATA OUTPUT GROUP
 
             case R.id.mnuAbout:
-                //TODO: Change this to a dialog
-                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + ", License: GPLv3, Copyright: 2017-2019 Divested Computing Group";
-                Snackbar about = Snackbar.make(findViewById(R.id.mainCoordinator), aboutMessage, Snackbar.LENGTH_LONG);
-                about.show();
+                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE + "\nLicense: GPLv3\nCopyright: 2017-2023\nAuthor: Divested Computing Group";
+                Dialog creditsDialog;
+                AlertDialog.Builder creditsBuilder = new AlertDialog.Builder(this);
+                creditsBuilder.setTitle(getString(R.string.lblFullCredits));
+                creditsBuilder.setMessage(aboutMessage);
+                creditsBuilder.create().show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
