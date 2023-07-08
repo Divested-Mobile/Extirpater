@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Extirpater</string>
+    <string name="lblStart">Εκκίνηση</string>
+    <string name="lblStop">Τερματισμός</string>
+    <string name="lblFullCredits">Credits</string>
+    <string name="lblStoragePrimary">Κύριος χώρος αποθήκευσης</string>
+    <string name="lblStorageSecondary">Δευτερεύον χώρος αποθήκευσης</string>
+    <string name="lblInfo">Πληροφορίες</string>
+    <string name="lblErasing">Πραγματοποιείται η διαγραφή</string>
+    <string name="lblStatus">Κατάσταση</string>
+    <string name="lblAbout">Σχετικά με</string>
+    <string name="lblZeroes">Μηδενικά</string>
+    <string name="lblData">Δεδομένα εξόδου</string>
+    <string name="lblIdle">Αδρανής</string>
+    <string name="lblFillFileTable">Συμπλήρωση του Πίνακα Αρχείων</string>
+
+    <string name="lblRandom" translatable="false">Random</string>
+    <string name="lblXORShiftRNG" translatable="false">XORShiftRNG</string>
+    <string name="lblMersenneTwisterRNG" translatable="false">MersenneTwisterRNG</string>
+    <string name="lblCMWC4096RNG" translatable="false">CMWC4096RNG</string>
+    <string name="lblSecureRandom" translatable="false">SecureRandom</string>
+</resources>
