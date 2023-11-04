@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Extirpater</string>
+    <string name="lblStart">Démarrer</string>
+    <string name="lblStop">Arrêter</string>
+    <string name="lblFullCredits">Crédits</string>
+    <string name="lblStoragePrimary">Stockage Principal</string>
+    <string name="lblStorageSecondary">Stockage Secondaire</string>
+    <string name="lblInfo">Informations</string>
+    <string name="lblErasing">Effacement</string>
+    <string name="lblStatus">État</string>
+    <string name="lblAbout">À propos</string>
+    <string name="lblZeroes">Zéros</string>
+    <string name="lblData">Données de sortie</string>
+    <string name="lblIdle">Inactif</string>
+    <string name="lblFillFileTable">Remplir la table de fichiers</string>
+
+    <string name="lblRandom" translatable="false">Aléatoire</string>
+    <string name="lblXORShiftRNG" translatable="false">Générateur XORShift</string>
+    <string name="lblMersenneTwisterRNG" translatable="false">Générateur Mersenne Twister</string>
+    <string name="lblCMWC4096RNG" translatable="false">Générateur CMWC4096</string>
+    <string name="lblSecureRandom" translatable="false">Sécurité Aléatoire</string>
+</resources>
