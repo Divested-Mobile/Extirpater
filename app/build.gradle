@@ -6,9 +6,9 @@ android {
         applicationId "us.spotco.extirpater"
         minSdkVersion 14
         targetSdkVersion 32
-        versionCode 30
+        versionCode 31
         versionName "1.5"
-        resConfigs 'en', 'de', 'el', 'es', 'pt'
+        resConfigs 'en', 'de', 'el', 'es', 'pt', 'fr'
     }
     buildTypes {
         debug {
