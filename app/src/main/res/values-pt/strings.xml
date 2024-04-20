@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Extirpater</string>
     <string name="lblStart">Iniciar</string>
     <string name="lblStop">Parar</string>
     <string name="lblFullCredits">Créditos</string>
