@@ -82,7 +82,8 @@ Goals
 
 Credits
 -------
-- @inkhorn for the Portuguese translations.
+- @inkhorn for Portuguese translations to the app.
+- @lucasmz for Portuguese translations to the app and Fastlane metadata.
 - Dimitris Vagiakakos for the Greek translations.
 - @Calvineries for the French translations.
 - Library: Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
