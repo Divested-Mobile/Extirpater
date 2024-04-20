@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">Extirpater</string>
     <string name="lblStart">Iniciar</string>
     <string name="lblStop">Parar</string>
-    <string name="lblStoragePrimary">Memória principal</string>
-    <string name="lblStorageSecondary">Memória secundária</string>
-    <string name="lblInfo">Info</string>
-    <string name="lblErasing">Eliminando</string>
+    <string name="lblFullCredits">Créditos</string>
+    <string name="lblStoragePrimary">Armazenamento principal</string>
+    <string name="lblStorageSecondary">Armazenamento secundário</string>
+    <string name="lblInfo">Informações</string>
+    <string name="lblErasing">Excluindo</string>
     <string name="lblStatus">Status</string>
     <string name="lblAbout">Sobre</string>
     <string name="lblZeroes">Zeros</string>
     <string name="lblData">Dados de saída</string>
     <string name="lblIdle">Inativo</string>
-    <string name="lblFillFileTable">Preencher tabela de arquivos</string>
+    <string name="lblFillFileTable">Encher tabela de arquivos</string>
 </resources>
