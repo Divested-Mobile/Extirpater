@@ -1,0 +1,17 @@
+<p>Um apagador de espaço livre de alta performance, o primeiro para Android. Use-o antes de vender seu dispositivo, após ativar a criptografia, ou após excluir muitos arquivos/apps.</p>
+<ul>
+<li>Por causa de como armazenamento flash funciona, e o layout das partições dos dispositivos, nunca será possível encher o armazenamento totalmente.</li>
+<li>Aviso! Uso excessivo DESTRUIRÁ seu dispositivo!</li>
+</ul>
+<p>O que é o apagamento do espaço livre?</p>
+<ul>
+<li>Normalmente quando você exclui um arquivo, ele não é realmente excluído, somente removido do índice do sistema de arquivos.</li>
+<li>Uma ferramenta de apagemento de espaço livre como esta, enche o armazenamento com dados aleatórios e depois os exclui.</li>
+<li>Esse processo faz com que arquivos excluídos, pela maior parte, não sejam mais recuperáveis.</li>
+</ul>
+<p>O que é o enchimento da tabela de arquivos?</p>
+<ul>
+<li>Em alguns sistemas de arquivos, nomes de arquivos excluídos ainda podem ser acessíveis em backups da índice.</li>
+<li>Criando muitos arquivos vazios com nomes aleatórios diferentes, é possível se livrar dos arquivos antigos.</li>
+<li>Esse process faz com que nomes dos arquivos excluídos, pela maior parte, não sejam mais recuperáveis.</li>
+</ul>
