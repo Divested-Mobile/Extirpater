@@ -1,0 +1,2 @@
+* Updated Portuguese translations from @lucasmz
+* Add icon for fastlane
