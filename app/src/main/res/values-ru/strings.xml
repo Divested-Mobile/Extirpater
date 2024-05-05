@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStart">Старт</string>
+    <string name="lblStop">Стоп</string>
+    <string name="lblFullCredits">О приложении</string>
+    <string name="lblStoragePrimary">Первичное хранилище</string>
+    <string name="lblStorageSecondary">Вторичное хранилище</string>
+    <string name="lblInfo">Инфо</string>
+    <string name="lblErasing">Стирание</string>
+    <string name="lblStatus">Статус</string>
+    <string name="lblAbout">О приложении</string>
+    <string name="lblZeroes">Нули</string>
+    <string name="lblData">Алгоритм перезаписи данных</string>
+    <string name="lblIdle">Неактивно</string>
+    <string name="lblFillFileTable">Заполнить файловую таблицу</string>
+</resources>
