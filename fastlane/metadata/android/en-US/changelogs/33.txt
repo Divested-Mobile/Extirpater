@@ -1,0 +1,1 @@
+* Add Russian translations thanks to @yurtpage
