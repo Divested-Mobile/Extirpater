@@ -10,6 +10,9 @@ A high performance free space eraser.
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/us.spotco.extirpater/)
+[<img src="https://hosted.weblate.org/widget/divestos/extirpater/287x66-grey.png"
+     alt="Translation status"
+     height="66">](https://hosted.weblate.org/engage/divestos/)
 
 What is free space erasing?
 ---------------------------
