@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="lblStop">Stani</string>
+    <string name="lblStoragePrimary">Primarna pohrana</string>
+    <string name="lblStorageSecondary">Sekundarna pohrana</string>
+    <string name="lblInfo">Info</string>
+    <string name="lblStatus">Status</string>
+    <string name="lblZeroes">Nule</string>
+    <string name="lblData">Izlazni podaci</string>
+    <string name="lblStart">Započni</string>
+    <string name="lblFullCredits">Zasluge</string>
+    <string name="lblErasing">Brisanje</string>
+    <string name="lblFillFileTable">Ispunite tablicu datoteka</string>
+    <string name="lblAbout">About</string>
+</resources>
