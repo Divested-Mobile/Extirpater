@@ -9,7 +9,8 @@
     <string name="lblStatus">Status</string>
     <string name="lblAbout">Über</string>
     <string name="lblZeroes">Nullen</string>
-    <string name="lblData">Datentyp</string>
+    <string name="lblData">Ausgabedaten</string>
     <string name="lblIdle">Leerlauf</string>
-    <string name="lblFillFileTable">Dateitabelle löschen</string>
+    <string name="lblFillFileTable">Dateitabelle überschreiben/löschen</string>
+    <string name="lblFullCredits">Danksagung</string>
 </resources>

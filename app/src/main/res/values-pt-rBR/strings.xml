@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStart">Começar</string>
+    <string name="lblStop">Parar</string>
+    <string name="lblStoragePrimary">Armazenamento Interno</string>
+    <string name="lblStorageSecondary">Armazenamento Externo</string>
+    <string name="lblInfo">Informações</string>
+    <string name="lblErasing">Apagando</string>
+    <string name="lblStatus">Estado</string>
+    <string name="lblAbout">Sobre</string>
+    <string name="lblZeroes">Zeros</string>
+    <string name="lblData">Dados de Saída</string>
+    <string name="lblIdle">Parado</string>
+    <string name="lblFillFileTable">Encher Tabela de Arquivos</string>
+    <string name="lblFullCredits">Créditos</string>
+</resources>
