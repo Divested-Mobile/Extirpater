@@ -93,7 +93,7 @@ Translations
 - Chinese (Simplified): 大王叫我来巡山
 - Croatian: lukapiplica
 - French: Calvineries
-- German: thereisnoanderson
+- German: js-xda, thereisnoanderson
 - Greek: Dimitris Vagiakakos
 - Norwegian Bokmål: Even Bull-Tornøe
 - Portuguese (Brazil): lucasmz-dev
