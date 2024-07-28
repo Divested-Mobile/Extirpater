@@ -1,0 +1,8 @@
+Translation updates thanks to the following contributors:
+- Chinese (Simplified): 大王叫我来巡山
+- Croatian: lukapiplica
+- German: thereisnoanderson
+- Norwegian Bokmål: Even Bull-Tornøe
+- Portuguese (Brazil): lucasmz-dev
+- Russian: Andrey
+- Spanish: gallegonovato

@@ -85,12 +85,21 @@ Goals
 
 Credits
 -------
-- @inkhorn for Portuguese translations to the app.
-- @lucasmz for Portuguese translations to the app and Fastlane metadata.
-- Dimitris Vagiakakos for the Greek translations.
-- @Calvineries for the French translations.
 - Library: Uncommons Maths, License: Apache 2.0, https://maths.uncommons.org
 - Icons: Google/Android/AOSP, License: Apache 2.0, https://google.github.io/material-design-icons/
+
+Translations
+------------
+- Chinese (Simplified): 大王叫我来巡山
+- Croatian: lukapiplica
+- French: Calvineries
+- German: thereisnoanderson
+- Greek: Dimitris Vagiakakos
+- Norwegian Bokmål: Even Bull-Tornøe
+- Portuguese (Brazil): lucasmz-dev
+- Portuguese: inkhorn
+- Russian: Andrey, yurtpage
+- Spanish: gallegonovato
 
 Donate
 -------
