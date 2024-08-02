@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStoragePrimary">Основне сховище</string>
+    <string name="lblStorageSecondary">Вторинне сховище</string>
+    <string name="lblErasing">Очищення</string>
+    <string name="lblStatus">Стан</string>
+    <string name="lblData">Вихідні дані</string>
+    <string name="lblIdle">Бездіяльність</string>
+    <string name="lblStop">Зупинити</string>
+    <string name="lblStart">Почати</string>
+    <string name="lblInfo">Інформація</string>
+    <string name="lblFullCredits">Подяки</string>
+    <string name="lblAbout">Про застосунок</string>
+    <string name="lblZeroes">Нулі</string>
+    <string name="lblFillFileTable">Заповнювати таблицю файлів</string>
+</resources>
