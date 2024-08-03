@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
             //END OF DATA OUTPUT GROUP
 
             case R.id.mnuAbout:
-                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE + "\nLicense: AGPLv3\nCopyright: 2017-2023\nAuthor: Divested Computing Group";
+                String aboutMessage = "Version: " + BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE + "\nLicense: AGPL-3.0-or-later\nCopyright: 2017-2023\nAuthor: Divested Computing Group";
                 Dialog creditsDialog;
                 AlertDialog.Builder creditsBuilder = new AlertDialog.Builder(this);
                 creditsBuilder.setTitle(getString(R.string.lblFullCredits));
