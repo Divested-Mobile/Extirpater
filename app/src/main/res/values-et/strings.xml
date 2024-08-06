@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="lblStart">Alusta</string>
+    <string name="lblStop">Lõpeta</string>
+    <string name="lblFullCredits">Rakenduse teave</string>
+    <string name="lblStoragePrimary">Esmane andmeruum</string>
+    <string name="lblStorageSecondary">Täiendav andmeruum</string>
+    <string name="lblInfo">Teave</string>
+    <string name="lblErasing">Kustutame</string>
+    <string name="lblStatus">Olek</string>
+    <string name="lblAbout">Teave</string>
+    <string name="lblZeroes">Nullid</string>
+    <string name="lblData">Väljundandmed</string>
+    <string name="lblIdle">Ootel</string>
+    <string name="lblFillFileTable">Täida failide loend</string>
+</resources>
