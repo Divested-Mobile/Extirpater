@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="lblZeroes">Zero</string>
+    <string name="lblStorageSecondary">Memoria Secondaria</string>
+    <string name="lblFullCredits">Riconoscimenti</string>
+    <string name="lblStoragePrimary">Memoria Primaria</string>
+    <string name="lblInfo">Informazioni</string>
+    <string name="lblStatus">Stato</string>
+    <string name="lblAbout">A proposito di</string>
+    <string name="lblData">Dati in output</string>
+    <string name="lblIdle">Inattivo</string>
+    <string name="lblFillFileTable">Riempi la tabella dei file</string>
+    <string name="lblStart">Avvio</string>
+    <string name="lblStop">Ferma</string>
+    <string name="lblErasing">Eliminazione</string>
+</resources>
