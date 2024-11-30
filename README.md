@@ -90,16 +90,21 @@ Credits
 
 Translations
 ------------
+- Arabic: jonnysemon
 - Chinese (Simplified): 大王叫我来巡山
 - Croatian: lukapiplica
+- Czech: Fjuro
+- Estonian: Priit Jõerüüt
 - French: Calvineries
 - German: js-xda, thereisnoanderson
 - Greek: Dimitris Vagiakakos
+- Italian: Dark Space
 - Norwegian Bokmål: Even Bull-Tornøe
-- Portuguese (Brazil): lucasmz-dev
+- Portuguese (Brazil): lucasmz-dev, Jose Delvani
 - Portuguese: inkhorn
 - Russian: Andrey, yurtpage
 - Spanish: gallegonovato
+- Ukrainian: Fqwe1
 
 Donate
 -------
