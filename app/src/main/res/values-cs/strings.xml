@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStart">Spustit</string>
+    <string name="lblStop">Zastavit</string>
+    <string name="lblFullCredits">Poděkování</string>
+    <string name="lblStoragePrimary">Primární úložiště</string>
+    <string name="lblStorageSecondary">Sekundární úložiště</string>
+    <string name="lblInfo">Informace</string>
+    <string name="lblErasing">Mazání</string>
+    <string name="lblStatus">Stav</string>
+    <string name="lblAbout">O aplikaci</string>
+    <string name="lblZeroes">Nuly</string>
+    <string name="lblData">Výstupní data</string>
+    <string name="lblIdle">Nečinný</string>
+    <string name="lblFillFileTable">Vyplnit souborovou tabulku</string>
+</resources>

@@ -6,11 +6,11 @@
     <string name="lblStorageSecondary">Armazenamento Externo</string>
     <string name="lblInfo">Informações</string>
     <string name="lblErasing">Apagando</string>
-    <string name="lblStatus">Estado</string>
+    <string name="lblStatus">Status</string>
     <string name="lblAbout">Sobre</string>
     <string name="lblZeroes">Zeros</string>
     <string name="lblData">Dados de Saída</string>
     <string name="lblIdle">Parado</string>
-    <string name="lblFillFileTable">Encher Tabela de Arquivos</string>
+    <string name="lblFillFileTable">Preencher tabela de arquivos</string>
     <string name="lblFullCredits">Créditos</string>
 </resources>

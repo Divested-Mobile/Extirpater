@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lblStart">ابدأ</string>
+    <string name="lblStop">أوقف</string>
+    <string name="lblFullCredits">الاعتمادات</string>
+    <string name="lblStoragePrimary">التخزين الأساسي</string>
+    <string name="lblStorageSecondary">التخزين الثانوي</string>
+    <string name="lblErasing">جارِ المسح</string>
+    <string name="lblZeroes">أصفار</string>
+    <string name="lblData">بيانات الإخراج</string>
+    <string name="lblIdle">ساكن</string>
+    <string name="lblFillFileTable">املأ جدول الملفات</string>
+    <string name="lblInfo">معلومات</string>
+    <string name="lblStatus">الحالة</string>
+    <string name="lblAbout">عن التطبيق</string>
+</resources>
