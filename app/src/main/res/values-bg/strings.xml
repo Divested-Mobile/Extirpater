@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="lblIdle">бездействие</string>
+    <string name="lblStart">Започнете</string>
+    <string name="lblFullCredits">Кредити</string>
+    <string name="lblStoragePrimary">Основно съхранение</string>
+    <string name="lblStorageSecondary">Вторично съхранение</string>
+    <string name="lblInfo">Информация</string>
+    <string name="lblErasing">Изтриване</string>
+    <string name="lblStatus">Състояние</string>
+    <string name="lblAbout">Относно</string>
+    <string name="lblZeroes">Нули</string>
+    <string name="lblData">Изходни данни</string>
+    <string name="lblFillFileTable">Попълнете файловата таблица</string>
+    <string name="lblStop">Спрете</string>
+</resources>
