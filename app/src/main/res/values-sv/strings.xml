@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="lblZeroes">Nollor</string>
+    <string name="lblStoragePrimary">Primär lagring</string>
+    <string name="lblStop">Stoppa</string>
+    <string name="lblFillFileTable">Fyll filtabell</string>
+    <string name="lblStorageSecondary">Sekundär lagring</string>
+    <string name="lblInfo">Info</string>
+    <string name="lblErasing">Raderar</string>
+    <string name="lblData">Utmatningsdata</string>
+    <string name="lblStart">Starta</string>
+    <string name="lblFullCredits">Tack till</string>
+    <string name="lblStatus">Status</string>
+    <string name="lblAbout">Om</string>
+    <string name="lblIdle">Inaktiv</string>
+</resources>
